@@ -64,6 +64,7 @@ else:
 def remove_phrase():
     """If the player guesses the correct grammar type for the sentence, the sentence/word is removed from the
     to_learn dictionary."""
+    global data
     to_learn.remove(sentence_word)
     print(len(to_learn))
     data = pandas.DataFrame(to_learn)
@@ -153,9 +154,21 @@ def end():
 
 def score_check():
     """score_check ends the game if the player has completed 20 correct answers."""
-    global noun_score_complete, adverb_score_complete, adjective_score_complete, verb_score_complete
+    global noun_score_complete, adverb_score_complete, adjective_score_complete, verb_score_complete, to_learn, \
+        original_data, data
     if verb_score_complete and noun_score_complete and adjective_score_complete and adverb_score_complete == True:
         end()
+    else:
+        pass
+    if len(to_learn) < 1:
+        os.remove("grammar_type_to_learn.csv")
+        try:
+            data = pandas.read_csv("grammar_type_to_learn.csv")
+        except FileNotFoundError:
+            original_data = pandas.read_csv("grammar_project.csv")
+            to_learn = original_data.to_dict(orient="records")
+        else:
+            to_learn = data.to_dict(orient="records")
     else:
         pass
 
