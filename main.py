@@ -19,11 +19,9 @@ often game-play, and with light gamification, and little punishment. My son love
 football, so I used these as references to build the words and sentences within the csv file. In the Tom Gates books
 they earn merits, so I used merits as the scoring system. If others were to use this program, they could adapt the csv
 file to use their own references. After playing this through with my son, I noticed that after several answers, he
-started to guess, rather than think through the correct answer. To help resolve this, I would limit the player's
-ability for incorrect answers by having 5 wrong answers end the game. I don't think this would feel like a big
-punishment to the player, given the game's short duration, and easy play-through and mechanics, but it could create an
-internal competitive system for the player to beat their previous score, and achieve 20 correct questions to earn
-maximum merits."""
+started to guess, rather than think through the correct answer. To help resolve this, I limited the player's
+ability for incorrect answers by having 5 wrong answers end the game. This helped motivate the player to beat their 
+previous score, and aim to achieve 20 correct questions to earn maximum merits."""
 
 
 BACKGROUND_COLOR = "#C5f2f6"
