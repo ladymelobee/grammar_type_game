@@ -116,4 +116,70 @@ end_button.grid(column=3, row=2)
 """adjective_merits"""
 adjective_merits = canvas.create_text(104, 30,
                                       fill=YELLOW,
-                                      text=
+                                      text=f"Adjective score = {score.adjective_score_1} / 5",
+                                      font=("Ariel", 13, "bold"))
+canvas.grid(column=0, row=0)
+
+"""noun_merits"""
+noun_merits = canvas.create_text(312, 30,
+                                 fill=GREEN,
+                                 text=f"Noun score = {score.noun_score_1} / 5",
+                                 font=("Ariel", 13, "bold"))
+canvas.grid(column=0, row=0)
+
+"""adverb_merits"""
+adverb_merits = canvas.create_text(512, 30,
+                                   fill=ORANGE,
+                                   text=f"Adverb score = {score.adverb_score_1} / 5",
+                                   font=("Ariel", 13, "bold"))
+canvas.grid(column=0, row=0)
+
+"""verb_merits"""
+verb_merits = canvas.create_text(711, 30,
+                                 fill=PURPLE,
+                                 text=f"Verb score = {score.verb_score_1} / 5",
+                                 font=("Ariel", 13, "bold"))
+canvas.grid(column=0, row=0)
+
+"""continue_button"""
+continue_img = PhotoImage(file="images/clear.png")
+continue_button = Button(image=continue_img,
+                         fg="White",
+                         highlightthickness=0,
+                         text='Continue',
+                         compound=CENTER,
+                         font=("Ariel", 15),
+                         command=gameplay.start_game)
+continue_button.grid(column=0, row=2)
+
+"""end_button"""
+end_img = PhotoImage(file="images/clear.png")
+end_button = Button(image=end_img,
+                    fg="White",
+                    highlightthickness=0,
+                    text='End',
+                    compound=CENTER,
+                    font=("Ariel", 15),
+                    command=gameplay.end)
+end_button.grid(column=3, row=2)
+
+"""Top Score"""
+top_score_text = canvas.create_text(200, 450,
+                                    fill="pink",
+                                    text=f"Top score = {score.top_score}",
+                                    font=("Ariel", 16, "bold"))
+canvas.grid(column=0, row=0)
+
+"""Old Score"""
+old_score_text = canvas.create_text(400, 450,
+                                    fill="pink",
+                                    text=f"Old score = {score.old_score}",
+                                    font=("Ariel", 16, "bold"))
+canvas.grid(column=0, row=0)
+
+"""New Score"""
+new_score_text = canvas.create_text(600, 450,
+                                    fill="pink",
+                                    text=f"New score = {score.new_score}",
+                                    font=("Ariel", 16, "bold"))
+canvas.grid(column=0, row=0)
