@@ -1,6 +1,8 @@
-from tkinter import *
-from button_objects import *
-
+from tkinter import PhotoImage, Canvas, CENTER, Tk, Button
+from buttons_class import ButtonClass
+from button_functions import verb_click, noun_click, adjective_click, adverb_click
+from gameplay_functions import start_game, end_game
+from score_class import ScoreClass
 
 BACKGROUND_COLOR = "#C5f2f6"
 YELLOW = "#e9bc4b"
@@ -8,12 +10,9 @@ GREEN = "#65c941"
 ORANGE = "#ee8231"
 PURPLE = "#b35ed8"
 
-#INTERFACE SETUP
 window = Tk()
 window.title("Grammar Practice")
-window.configure(padx=50,
-                 pady=50,
-                 bg=BACKGROUND_COLOR)
+window.configure(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
 canvas = Canvas(width=800,
                 height=526,
@@ -25,7 +24,6 @@ card_background = canvas.create_image(411, 263,
                                       image=card_front_img)
 canvas.grid(column=0, row=0, columnspan=4)
 
-#TEXT
 """Card_Text_Sentence"""
 card_text_sentence = canvas.create_text(400, 263,
                                         text="",
@@ -41,14 +39,13 @@ card_text_word = canvas.create_text(397, 150,
 canvas.grid(column=0, row=0)
 
 """Card_Text_Grammar"""
-card_text_grammar_des = canvas.create_text(397, 360, text="",
+card_text_grammar_des = canvas.create_text(397, 360,
+                                           text="",
                                            justify=CENTER,
                                            fill="Black",
                                            font=("Ariel", 14, "bold"))
 canvas.grid(column=0, row=0)
 
-
-#BUTTONS
 """verb_button"""
 verb_img = PhotoImage(file="images/verb.png")
 verb_button = Button(image=verb_img,
@@ -56,7 +53,7 @@ verb_button = Button(image=verb_img,
                      text='Verb',
                      compound=CENTER,
                      font=("Ariel", 20, "bold"),
-                     command=verb_button)
+                     command=verb_click)
 verb_button.grid(column=3, row=1)
 
 """noun_button"""
@@ -66,7 +63,7 @@ noun_button = Button(image=noun_img,
                      text='Noun',
                      compound=CENTER,
                      font=("Ariel", 20, "bold"),
-                     command=noun)
+                     command=noun_click)
 noun_button.grid(column=1, row=1)
 
 """adjective_button"""
@@ -76,7 +73,7 @@ adjective_button = Button(image=adjective_img,
                           text='Adjective',
                           compound=CENTER,
                           font=("Ariel", 20, "bold"),
-                          command=adjective)
+                          command=adjective_click)
 adjective_button.grid(column=0, row=1)
 
 """adverb_button"""
@@ -86,58 +83,34 @@ adverb_button = Button(image=adverb_img,
                        text='Adverb',
                        compound=CENTER,
                        font=("Ariel", 20, "bold"),
-                       command=adverb)
+                       command=adverb_click)
 adverb_button.grid(column=2, row=1)
 
-"""continue_button"""
-continue_img = PhotoImage(file="images/clear.png")
-continue_button = Button(image=continue_img,
-                         fg="White",
-                         highlightthickness=0,
-                         text='Continue',
-                         compound=CENTER,
-                         font=("Ariel", 15),
-                         command=gameplay.start_game)
-continue_button.grid(column=0, row=2)
-
-"""end_button"""
-end_img = PhotoImage(file="images/clear.png")
-end_button = Button(image=end_img,
-                    fg="White",
-                    highlightthickness=0,
-                    text='End',
-                    compound=CENTER,
-                    font=("Ariel", 15),
-                    command=gameplay.end)
-end_button.grid(column=3, row=2)
-
-
-#SCORES
 """adjective_merits"""
 adjective_merits = canvas.create_text(104, 30,
                                       fill=YELLOW,
-                                      text=f"Adjective score = {score.adjective_score_1} / 5",
+                                      text=f"Adjective score = {ButtonClass.adjective_score_1} / 5",
                                       font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
 """noun_merits"""
 noun_merits = canvas.create_text(312, 30,
                                  fill=GREEN,
-                                 text=f"Noun score = {score.noun_score_1} / 5",
+                                 text=f"Noun score = {ButtonClass.noun_score_1} / 5",
                                  font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
 """adverb_merits"""
 adverb_merits = canvas.create_text(512, 30,
                                    fill=ORANGE,
-                                   text=f"Adverb score = {score.adverb_score_1} / 5",
+                                   text=f"Adverb score = {ButtonClass.adverb_score_1} / 5",
                                    font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
 """verb_merits"""
 verb_merits = canvas.create_text(711, 30,
                                  fill=PURPLE,
-                                 text=f"Verb score = {score.verb_score_1} / 5",
+                                 text=f"Verb score = {ButtonClass.verb_score_1} / 5",
                                  font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
@@ -149,7 +122,7 @@ continue_button = Button(image=continue_img,
                          text='Continue',
                          compound=CENTER,
                          font=("Ariel", 15),
-                         command=gameplay.start_game)
+                         command=start_game)
 continue_button.grid(column=0, row=2)
 
 """end_button"""
@@ -160,26 +133,25 @@ end_button = Button(image=end_img,
                     text='End',
                     compound=CENTER,
                     font=("Ariel", 15),
-                    command=gameplay.end)
+                    command=end_game)
 end_button.grid(column=3, row=2)
 
 """Top Score"""
 top_score_text = canvas.create_text(200, 450,
                                     fill="pink",
-                                    text=f"Top score = {score.top_score}",
+                                    text=f"Top score = {ScoreClass.top_score}",
                                     font=("Ariel", 16, "bold"))
 canvas.grid(column=0, row=0)
 
 """Old Score"""
 old_score_text = canvas.create_text(400, 450,
                                     fill="pink",
-                                    text=f"Old score = {score.old_score}",
+                                    text=f"Old score = {ScoreClass.old_score}",
                                     font=("Ariel", 16, "bold"))
 canvas.grid(column=0, row=0)
 
 """New Score"""
 new_score_text = canvas.create_text(600, 450,
                                     fill="pink",
-                                    text=f"New score = {score.new_score}",
+                                    text=f"New score = {ScoreClass.new_score}",
                                     font=("Ariel", 16, "bold"))
-canvas.grid(column=0, row=0)
