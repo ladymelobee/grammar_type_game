@@ -4,6 +4,9 @@ from button_functions import verb_click, noun_click, adjective_click, adverb_cli
 from gameplay_functions import start_game, end_game
 from score_class import ScoreClass
 
+s = ScoreClass()
+b = ButtonClass()
+
 BACKGROUND_COLOR = "#C5f2f6"
 YELLOW = "#e9bc4b"
 GREEN = "#65c941"
@@ -89,28 +92,28 @@ adverb_button.grid(column=2, row=1)
 """adjective_merits"""
 adjective_merits = canvas.create_text(104, 30,
                                       fill=YELLOW,
-                                      text=f"Adjective score = {ButtonClass.adjective_score_1} / 5",
+                                      text=f"Adjective score = {b.adjective_score_1} / 5",
                                       font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
 """noun_merits"""
 noun_merits = canvas.create_text(312, 30,
                                  fill=GREEN,
-                                 text=f"Noun score = {ButtonClass.noun_score_1} / 5",
+                                 text=f"Noun score = {b.noun_score_1} / 5",
                                  font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
 """adverb_merits"""
 adverb_merits = canvas.create_text(512, 30,
                                    fill=ORANGE,
-                                   text=f"Adverb score = {ButtonClass.adverb_score_1} / 5",
+                                   text=f"Adverb score = {b.adverb_score_1} / 5",
                                    font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
 """verb_merits"""
 verb_merits = canvas.create_text(711, 30,
                                  fill=PURPLE,
-                                 text=f"Verb score = {ButtonClass.verb_score_1} / 5",
+                                 text=f"Verb score = {b.verb_score_1} / 5",
                                  font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
@@ -139,19 +142,19 @@ end_button.grid(column=3, row=2)
 """Top Score"""
 top_score_text = canvas.create_text(200, 450,
                                     fill="pink",
-                                    text=f"Top score = {ScoreClass.top_score}",
+                                    text=f"Top score = {s.top_score}",
                                     font=("Ariel", 16, "bold"))
 canvas.grid(column=0, row=0)
 
 """Old Score"""
 old_score_text = canvas.create_text(400, 450,
                                     fill="pink",
-                                    text=f"Old score = {ScoreClass.old_score}",
+                                    text=f"Old score = {s.old_score}",
                                     font=("Ariel", 16, "bold"))
 canvas.grid(column=0, row=0)
 
 """New Score"""
 new_score_text = canvas.create_text(600, 450,
                                     fill="pink",
-                                    text=f"New score = {ScoreClass.new_score}",
+                                    text=f"New score = {s.new_score}",
                                     font=("Ariel", 16, "bold"))

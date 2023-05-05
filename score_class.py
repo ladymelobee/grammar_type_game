@@ -1,7 +1,8 @@
 class ScoreClass:
-    old_score = 0
-    top_score = 0
-    new_score = 0
-    click_score = ""
-    click_score_complete = False
-    stop_score = False
+    def __init__(self):
+        self.old_score = 0
+        self.top_score = 0
+        self.new_score = 0
+        self.click_score = ""
+        self.click_score_complete = False
+        self.stop_score = False

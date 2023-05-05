@@ -21,7 +21,6 @@ started to guess, rather than think through the correct answer. To help resolve 
 ability for incorrect answers by having 5 wrong answers end the game. This helped motivate the player to beat their 
 previous score, and aim to achieve 20 correct questions to earn maximum merits."""
 
-
 start_game()
 
 window.mainloop()

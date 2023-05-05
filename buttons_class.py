@@ -1,20 +1,21 @@
 class ButtonClass:
-    adverb_score = 0
-    verb_score = 0
-    adjective_score = 0
-    noun_score = 0
+    def __init__(self):
+        self.adverb_score = 0
+        self.verb_score = 0
+        self.adjective_score = 0
+        self.noun_score = 0
 
-    adverb_score_1 = 0
-    verb_score_1 = 0
-    adjective_score_1 = 0
-    noun_score_1 = 0
+        self.adverb_score_1 = 0
+        self.verb_score_1 = 0
+        self.adjective_score_1 = 0
+        self.noun_score_1 = 0
 
-    adverb_score_complete = False
-    verb_score_complete = False
-    noun_score_complete = False
-    adjective_score_complete = False
+        self.adverb_score_complete = False
+        self.verb_score_complete = False
+        self.noun_score_complete = False
+        self.adjective_score_complete = False
 
-    noun_merits = 0
-    verb_merits = 0
-    adjective_merits = 0
-    adverb_merits = 0
+        self.noun_merits = 0
+        self.verb_merits = 0
+        self.adjective_merits = 0
+        self.adverb_merits = 0

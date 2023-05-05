@@ -12,22 +12,26 @@ def verb_click():
     from score_class import ScoreClass
     from interface import canvas
 
-    ButtonClass.verb_score = ButtonClass.verb_score_1
-    GamePlay.answer = "Verb"
+    g = GamePlay()
+    b = ButtonClass()
+    s = ScoreClass()
+
+    b.verb_score = b.verb_score_1
+    g.answer = "Verb"
     answer_reveal()
-    if GamePlay.sentence_word["Grammar"] == "Verb":
+    if g.sentence_word["Grammar"] == "Verb":
         remove_phrase()
-        if ScoreClass.stop_score == False:
-            if ButtonClass.verb_score < 5:
-                ButtonClass.verb_score += 1
-                ButtonClass.verb_score_1 = ButtonClass.verb_score
-                canvas.itemconfig(ButtonClass.verb_merits, text=f"Verb score = {ButtonClass.verb_score_1} / 5")
-                ScoreClass.stop_score = True
-                if ButtonClass.verb_score == 5:
-                    ButtonClass.verb_score_complete = True
+        if s.stop_score == False:
+            if b.verb_score < 5:
+                b.verb_score += 1
+                b.verb_score_1 = b.verb_score
+                canvas.itemconfig(b.verb_merits, text=f"Verb score = {b.verb_score_1} / 5")
+                s.stop_score = True
+                if b.verb_score == 5:
+                    b.verb_score_complete = True
                 score_check()
-            elif ButtonClass.verb_score == 5:
-                ButtonClass.verb_score_complete = True
+            elif b.verb_score == 5:
+                b.verb_score_complete = True
                 score_check()
 
 
@@ -42,22 +46,26 @@ def noun_click():
     from score_class import ScoreClass
     from interface import canvas
 
-    ButtonClass.noun_score = ButtonClass.noun_score_1
-    GamePlay.answer = "Noun"
+    g = GamePlay()
+    b = ButtonClass()
+    s = ScoreClass()
+
+    b.noun_score = b.noun_score_1
+    g.answer = "Noun"
     answer_reveal()
-    if GamePlay.sentence_word["Grammar"] == "Noun":
+    if g.sentence_word["Grammar"] == "Noun":
         remove_phrase()
-        if ScoreClass.stop_score == False:
-            if ButtonClass.noun_score < 5:
-                ButtonClass.noun_score += 1
-                ButtonClass.noun_score_1 = ButtonClass.noun_score
-                canvas.itemconfig(ButtonClass.noun_merits, text=f"Noun score = {ButtonClass.noun_score_1} / 5")
-                ScoreClass.stop_score = True
-                if ButtonClass.noun_score == 5:
-                    ButtonClass.noun_score_complete = True
+        if s.stop_score == False:
+            if b.noun_score < 5:
+                b.noun_score += 1
+                b.noun_score_1 = b.noun_score
+                canvas.itemconfig(b.noun_merits, text=f"Noun score = {b.noun_score_1} / 5")
+                s.stop_score = True
+                if b.noun_score == 5:
+                    b.noun_score_complete = True
                 score_check()
-            elif ButtonClass.noun_score == 5:
-                ButtonClass.noun_score_complete = True
+            elif b.noun_score == 5:
+                b.noun_score_complete = True
                 score_check()
 
 
@@ -72,22 +80,26 @@ def adverb_click():
     from score_class import ScoreClass
     from interface import canvas
 
-    ButtonClass.adverb_score = ButtonClass.adverb_score_1
-    GamePlay.answer = "Adverb"
+    g = GamePlay()
+    b = ButtonClass()
+    s = ScoreClass()
+
+    b.adverb_score = b.adverb_score_1
+    g.answer = "Adverb"
     answer_reveal()
-    if GamePlay.sentence_word["Grammar"] == "Adverb":
+    if g.sentence_word["Grammar"] == "Adverb":
         remove_phrase()
-        if ScoreClass.stop_score == False:
-            if ButtonClass.adverb_score < 5:
-                ButtonClass.adverb_score += 1
-                ButtonClass.adverb_score_1 = ButtonClass.adverb_score
-                canvas.itemconfig(ButtonClass.adverb_merits, text=f"Adverb score = {ButtonClass.adverb_score_1} / 5")
-                ScoreClass.stop_score = True
-                if ButtonClass.adverb_score == 5:
-                    ButtonClass.adverb_score_complete = True
+        if s.stop_score == False:
+            if b.adverb_score < 5:
+                b.adverb_score += 1
+                b.adverb_score_1 = b.adverb_score
+                canvas.itemconfig(b.adverb_merits, text=f"Adverb score = {b.adverb_score_1} / 5")
+                s.stop_score = True
+                if b.adverb_score == 5:
+                    b.adverb_score_complete = True
                 score_check()
-            elif ButtonClass.adverb_score == 5:
-                ButtonClass.adverb_score_complete = True
+            elif b.adverb_score == 5:
+                b.adverb_score_complete = True
                 score_check()
 
 
@@ -102,20 +114,24 @@ def adjective_click():
     from score_class import ScoreClass
     from interface import canvas
 
-    ButtonClass.adjective_score = ButtonClass.adjective_score_1
-    GamePlay.answer = "Adjective"
+    g = GamePlay()
+    s = ScoreClass()
+    b = ButtonClass()
+
+    b.adjective_score = b.adjective_score_1
+    g.answer = "Adjective"
     answer_reveal()
-    if GamePlay.sentence_word["Grammar"] == "Adjective":
+    if g.sentence_word["Grammar"] == "Adjective":
         remove_phrase()
-        if ScoreClass.stop_score == False:
-            if ButtonClass.adjective_score < 5:
-                ButtonClass.adjective_score += 1
-                ButtonClass.adjective_score_1 = ButtonClass.adjective_score
-                canvas.itemconfig(ButtonClass.adjective_merits, text=f"Adjective score = {ButtonClass.adjective_score_1} / 5")
-                ScoreClass.stop_score = True
-                if ButtonClass.adjective_score == 5:
-                    ButtonClass.adjective_score_complete = True
+        if s.stop_score == False:
+            if b.adjective_score < 5:
+                b.adjective_score += 1
+                b.adjective_score_1 = b.adjective_score
+                canvas.itemconfig(b.adjective_merits, text=f"Adjective score = {b.adjective_score_1} / 5")
+                s.stop_score = True
+                if b.adjective_score == 5:
+                    b.adjective_score_complete = True
                 score_check()
-            elif ButtonClass.adjective_score == 5:
-                ButtonClass.adjective_score_complete = True
+            elif b.adjective_score == 5:
+                b.adjective_score_complete = True
                 score_check()

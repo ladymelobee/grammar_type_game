@@ -4,6 +4,7 @@ from random import choice
 
 
 def start_game():
+
     from button_functions import verb_click, adverb_click, adjective_click, noun_click
     from interface import verb_button, adverb_button, adjective_button, noun_button, verb_img, adverb_img, \
         adjective_img, noun_img, card_text_grammar_des, card_text_sentence, canvas, card_text_word
@@ -15,8 +16,19 @@ def start_game():
     from gameplay_class import GamePlay
     from score_class import ScoreClass
 
-    GamePlay.answer = ""
-    ScoreClass.stop_score = False
+    g = GamePlay()
+    s = ScoreClass()
+
+    try:
+        data = pandas.read_csv("grammar_type_to_learn.csv")
+    except FileNotFoundError:
+        original_data = pandas.read_csv("grammar_project.csv")
+        g.to_learn = original_data.to_dict(orient="records")
+    else:
+        g.to_learn = data.to_dict(orient="records")
+
+    g.answer = ""
+    s.stop_score = False
     verb_button.configure(image=verb_img,
                           command=verb_click, fg="Black"),
     adverb_button.configure(image=adverb_img,
@@ -29,10 +41,12 @@ def start_game():
         image=noun_img,
         command=noun_click,
         fg="Black")
+
     canvas.itemconfig(card_text_grammar_des, text="")
-    GamePlay.sentence_word = choice(GamePlay.to_learn)
-    canvas.itemconfig(card_text_sentence, text=GamePlay.sentence_word["Sentence"], fill="black")
-    canvas.itemconfig(card_text_word, text=GamePlay.sentence_word["Word"], fill="black")
+    g.sentence_word = choice(g.to_learn)
+    canvas.itemconfig(card_text_sentence, text=g.sentence_word["Sentence"], fill="black")
+    canvas.itemconfig(card_text_word, text=g.sentence_word["Word"], fill="black")
+
     score_check()
 
 
@@ -52,18 +66,20 @@ def answer_reveal():
 
     from gameplay_class import GamePlay
 
-    if GamePlay.sentence_word["Grammar"] == "Noun":
+    g = GamePlay()
+
+    if g.sentence_word["Grammar"] == "Noun":
         canvas.itemconfig(card_text_word,
-                          text=GamePlay.sentence_word['Word'],
+                          text=g.sentence_word['Word'],
                           fill=GREEN)
-        if GamePlay.answer == "Noun":
+        if g.answer == "Noun":
             canvas.itemconfig(card_text_grammar_des,
-                              text=f"Correct! Well done. {GamePlay.sentence_word['Word']} is a noun.\nA noun is a word "
+                              text=f"Correct! Well done. {g.sentence_word['Word']} is a noun.\nA noun is a word "
                                    f"used to identify people, places or things.",
                               fill=GREEN)
         else:
             canvas.itemconfig(card_text_grammar_des,
-                              text=f"{GamePlay.sentence_word['Word']} is a noun. \nA noun is a word used to identify "
+                              text=f"{g.sentence_word['Word']} is a noun. \nA noun is a word used to identify "
                                    f"people, places or things.",
                               fill=GREEN)
             if_wrong_answer()
@@ -78,18 +94,18 @@ def answer_reveal():
                                 command=do_nothing,
                                 fg="White"),
         noun_button.configure(command=do_nothing)
-    elif GamePlay.sentence_word["Grammar"] == "Verb":
+    elif g.sentence_word["Grammar"] == "Verb":
         canvas.itemconfig(card_text_word,
-                          text=GamePlay.sentence_word['Word'],
+                          text=g.sentence_word['Word'],
                           fill=PURPLE)
-        if GamePlay.answer == "Verb":
+        if g.answer == "Verb":
             canvas.itemconfig(card_text_grammar_des,
-                              text=f"Correct! Well done. {GamePlay.sentence_word['Word']} is a verb.\nA verb is a "
+                              text=f"Correct! Well done. {g.sentence_word['Word']} is a verb.\nA verb is a "
                                    f"word that describes what the subject is doing.",
                               fill=PURPLE)
         else:
             canvas.itemconfig(card_text_grammar_des,
-                              text=f"{GamePlay.sentence_word['Word']} is a verb. \nA verb is a word that describes "
+                              text=f"{g.sentence_word['Word']} is a verb. \nA verb is a word that describes "
                                    f"what the subject is doing.",
                               fill=PURPLE)
             if_wrong_answer()
@@ -103,18 +119,18 @@ def answer_reveal():
                                 command=do_nothing,
                                 fg="White"),
         verb_button.configure(command=do_nothing)
-    elif GamePlay.sentence_word["Grammar"] == "Adverb":
+    elif g.sentence_word["Grammar"] == "Adverb":
         canvas.itemconfig(card_text_word,
-                          text=GamePlay.sentence_word['Word'],
+                          text=g.sentence_word['Word'],
                           fill=ORANGE)
-        if GamePlay.answer == "Adverb":
+        if g.answer == "Adverb":
             canvas.itemconfig(card_text_grammar_des,
-                              text=f"Correct! Well done. {GamePlay.sentence_word['Word']} is an adverb.\nAn adverb "
+                              text=f"Correct! Well done. {g.sentence_word['Word']} is an adverb.\nAn adverb "
                                    f"is a word that describes how an action is carried out.",
                               fill=ORANGE)
         else:
             canvas.itemconfig(card_text_grammar_des,
-                              text=f"{GamePlay.sentence_word['Word']} is an adverb. \nAn adverb is a word that "
+                              text=f"{g.sentence_word['Word']} is an adverb. \nAn adverb is a word that "
                                    f"describes how an action is carried out.",
                               fill=ORANGE)
             if_wrong_answer()
@@ -130,16 +146,16 @@ def answer_reveal():
         adverb_button.configure(command=do_nothing)
     else:
         canvas.itemconfig(card_text_word,
-                          text=GamePlay.sentence_word['Word'],
+                          text=g.sentence_word['Word'],
                           fill=YELLOW)
-        if GamePlay.answer == "Adjective":
+        if g.answer == "Adjective":
             canvas.itemconfig(card_text_grammar_des,
-                              text=f"Correct! Well done. {GamePlay.sentence_word['Word']} is an adjective. "
+                              text=f"Correct! Well done. {g.sentence_word['Word']} is an adjective. "
                                    f"\nAn adjective is a word that describes a person, place or thing.",
                               fill=YELLOW)
         else:
             canvas.itemconfig(card_text_grammar_des,
-                              text=f"{GamePlay.sentence_word['Word']} is an adjective. \nAn adjective is a word "
+                              text=f"{g.sentence_word['Word']} is an adjective. \nAn adjective is a word "
                                    f"that describes a person, place or thing.",
                               fill=YELLOW)
             if_wrong_answer()
@@ -162,20 +178,24 @@ def score_check():
     from buttons_class import ButtonClass
     from gameplay_class import GamePlay
 
-    if ButtonClass.verb_score_complete and ButtonClass.noun_score_complete and ButtonClass.adjective_score_complete and \
-            ButtonClass.adverb_score_complete == True:
+    g = GamePlay()
+    b = ButtonClass()
+
+    try:
+        data = pandas.read_csv("grammar_type_to_learn.csv")
+    except FileNotFoundError:
+        original_data = pandas.read_csv("grammar_project.csv")
+        g.to_learn = original_data.to_dict(orient="records")
+    else:
+        g.to_learn = data.to_dict(orient="records")
+
+    if b.verb_score_complete and b.noun_score_complete and b.adjective_score_complete and \
+            b.adverb_score_complete == True:
         end_game()
     else:
         pass
-    if len(GamePlay.to_learn) < 1:
+    if len(g.to_learn) < 1:
         os.remove("grammar_type_to_learn.csv")
-        try:
-            data = pandas.read_csv("grammar_type_to_learn.csv")
-        except FileNotFoundError:
-            original_data = pandas.read_csv("grammar_project.csv")
-            GamePlay.to_learn = original_data.to_dict(orient="records")
-        else:
-            GamePlay.to_learn = data.to_dict(orient="records")
 
 
 def remove_phrase():
@@ -185,9 +205,11 @@ def remove_phrase():
 
     from gameplay_class import GamePlay
 
-    GamePlay.to_learn.remove(GamePlay.sentence_word)
-    print(len(GamePlay.to_learn))
-    data = pandas.DataFrame(GamePlay.to_learn)
+    g = GamePlay()
+
+    g.to_learn.remove(g.sentence_word)
+    print(len(g.to_learn))
+    data = pandas.DataFrame(g.to_learn)
     data.to_csv("grammar_type_to_learn.csv", index=False)
 
 
@@ -198,8 +220,10 @@ def if_wrong_answer():
 
     from gameplay_class import GamePlay
 
-    GamePlay.guess -= 1
-    if GamePlay.guess == 0:
+    g = GamePlay()
+
+    g.guess -= 1
+    if g.guess == 0:
         end_game()
 
 
@@ -210,6 +234,7 @@ def do_nothing():
 
 
 def end_game():
+
     from interface import verb_button, adverb_button, adjective_button, noun_button, card_text_grammar_des, \
         card_text_sentence, canvas, card_text_word, clear_button, end_button, continue_button, new_score_text, \
         old_score_text, top_score_text
@@ -221,7 +246,10 @@ def end_game():
     from score_class import ScoreClass
     from buttons_class import ButtonClass
 
-    total_merits = ButtonClass.adverb_score_1 + ButtonClass.verb_score_1 + ButtonClass.adjective_score_1 + ButtonClass.noun_score_1
+    b = ButtonClass()
+    s = ScoreClass()
+
+    total_merits = b.adverb_score_1 + b.verb_score_1 + b.adjective_score_1 + b.noun_score_1
     max_score = total_merits + 20
     end_button.configure(text="End",
                          command=do_nothing,
@@ -229,10 +257,10 @@ def end_game():
     continue_button.configure(text="Reset",
                               command=reset_game,
                               fg="White")
-    if ButtonClass.verb_score_complete and ButtonClass.noun_score_complete and ButtonClass.adjective_score_complete and \
-            ButtonClass.adverb_score_complete == True:
-        ScoreClass.new_score = max_score
-        ScoreClass.top_score = max_score
+    if b.verb_score_complete and b.noun_score_complete and b.adjective_score_complete and \
+            b.adverb_score_complete == True:
+        s.new_score = max_score
+        s.top_score = max_score
         canvas.itemconfig(card_text_sentence,
                           text=f"Well done! You scored {total_merits} merits!\nPlus an extra 20 merits for completing "
                                f"the game!\nYour final score is {max_score}!")
@@ -252,9 +280,9 @@ def end_game():
                               fg="White"),
         adjective_button.configure(image=clear_button, fg="White")
     else:
-        ScoreClass.new_score = total_merits
-        if ScoreClass.new_score > ScoreClass.old_score:
-            ScoreClass.top_score = total_merits
+        s.new_score = total_merits
+        if s.new_score > s.old_score:
+            s.top_score = total_merits
         else:
             pass
         canvas.itemconfig(card_text_sentence, text=f"You scored {total_merits} merits!")
@@ -275,9 +303,9 @@ def end_game():
         adjective_button.configure(image=clear_button,
                                    command=do_nothing,
                                    fg="White")
-    canvas.itemconfig(new_score_text, text=f"New score = {ScoreClass.new_score}")
-    canvas.itemconfig(old_score_text, text=f"Old score = {ScoreClass.old_score}")
-    canvas.itemconfig(top_score_text, text=f"Top score = {ScoreClass.top_score}")
+    canvas.itemconfig(new_score_text, text=f"New score = {s.new_score}")
+    canvas.itemconfig(old_score_text, text=f"Old score = {s.old_score}")
+    canvas.itemconfig(top_score_text, text=f"Top score = {s.top_score}")
 
 
 def reset_game():
@@ -287,24 +315,32 @@ def reset_game():
     from buttons_class import ButtonClass
     from gameplay_class import GamePlay
 
-    GamePlay.guess = 5
-    ButtonClass.adverb_score_1 = 0
-    ButtonClass.verb_score_1 = 0
-    ButtonClass.adjective_score_1 = 0
-    ButtonClass.noun_score_1 = 0
-    ButtonClass.adverb_score_complete = False
-    ButtonClass.verb_score_complete = False
-    ButtonClass.noun_score_complete = False
-    ButtonClass.adjective_score_complete = False
+    b = ButtonClass()
+    g = GamePlay()
+    s = ScoreClass()
+
+    g.guess = 5
+    b.adverb_score_1 = 0
+    b.verb_score_1 = 0
+    b.adjective_score_1 = 0
+    b.noun_score_1 = 0
+    b.adverb_score_complete = False
+    b.verb_score_complete = False
+    b.noun_score_complete = False
+    b.adjective_score_complete = False
+
     os.remove("grammar_type_to_learn.csv")
+
     end_button.configure(text="End", command=end_game, fg="White")
     continue_button.configure(text="Continue", command=start_game, fg="White")
-    if ScoreClass.new_score > ScoreClass.old_score:
-        ScoreClass.top_score = ScoreClass.new_score
+    if s.new_score > s.old_score:
+        s.top_score = s.new_score
     else:
-        ScoreClass.top_score = ScoreClass.old_score
-    ScoreClass.old_score = ScoreClass.new_score
-    ScoreClass.new_score = 0
-    canvas.itemconfig(new_score_text, text=f"New score = {ScoreClass.new_score}")
-    canvas.itemconfig(old_score_text, text=f"Old score = {ScoreClass.old_score}")
+        s.top_score = s.old_score
+    s.old_score = s.new_score
+    s.new_score = 0
+
+    canvas.itemconfig(new_score_text, text=f"New score = {s.new_score}")
+    canvas.itemconfig(old_score_text, text=f"Old score = {s.old_score}")
+
     start_game()
