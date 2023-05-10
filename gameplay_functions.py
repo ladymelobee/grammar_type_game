@@ -9,8 +9,8 @@ def start_game():
     from interface import verb_button, adverb_button, adjective_button, noun_button, verb_img, adverb_img, \
         adjective_img, noun_img, card_text_grammar_des, card_text_sentence, canvas, card_text_word
 
-    """The random word function is the opening program, and starts the game by generating a random word/sentence from
-    the to_learn dictionary. It also resets the answer and stop_score variables, to allow for the game to
+    """This function generates a random word/sentence from the to_learn dictionary. 
+    It also resets the answer and stop_score variables, to allow for the game to
     be replayed."""
 
     from gameplay_class import GamePlay
@@ -60,9 +60,8 @@ def answer_reveal():
     ORANGE = "#ee8231"
     PURPLE = "#b35ed8"
 
-    """After the player has made their choice, the answer_reveal function checks if the player's choice is correct, and
-    presents the answer to the player. This function also temporarily disables the grammar buttons, until the player
-    uses the continue button."""
+    """This function checks if the player's choice is correct, and presents the answer to the player. 
+    This function also changes the grammar type button's command function, to run the do_nothing function."""
 
     from gameplay_class import GamePlay
 
@@ -173,7 +172,10 @@ def answer_reveal():
 
 def score_check():
 
-    """score_check ends the game if the player has completed 20 correct answers."""
+    """This function checks if the player has completed 20 correct answers. If so, this function runs the 
+    end_game function. This function also checks the length of the 'to_learn' dictionary. If the dictionary 
+    has less than one entry, this function removes the "grammar_type_to_learn.csv", so that it can be recreated 
+    with a full amount of entries."""
 
     from buttons_class import ButtonClass
     from gameplay_class import GamePlay
@@ -200,8 +202,7 @@ def score_check():
 
 def remove_phrase():
 
-    """If the player guesses the correct grammar type for the sentence, the sentence/word is removed from the
-    to_learn dictionary."""
+    """This function removes the current sentence/word from the to_learn dictionary."""
 
     from gameplay_class import GamePlay
 
@@ -214,10 +215,13 @@ def remove_phrase():
 
 
 def if_wrong_answer():
+    
+    """This function reduces the player's lives by 1 point. The player has 5 lives. This function also checks if 
+    the player has 0 lives, if so, then this function runs another function which ends the game."""
 
-    """If the player chooses the wrong answer,  their tries are reduced by 1 point. 5 wrong tries and the game ends.
-    The player can restart the game to try and beat their old score."""
-
+    #If the player chooses the wrong answer, their tries are reduced by 1 point. 5 wrong tries and the game ends.
+    #The player can restart the game to try and beat their old score.
+    
     from gameplay_class import GamePlay
 
     g = GamePlay()
@@ -228,8 +232,9 @@ def if_wrong_answer():
 
 
 def do_nothing():
-    """After the player has used a grammar type button, the button's command function is temporarily disabled using this
-    function (do_nothing), to prevent the function running again, whilst the proceeding functions complete."""
+    """This function does nothing."""
+    #This function temporarily disables the grammar type button's command function, so that the player cannot
+    #reuse the button during the result reveal moment.
     pass
 
 
@@ -239,9 +244,7 @@ def end_game():
         card_text_sentence, canvas, card_text_word, clear_button, end_button, continue_button, new_score_text, \
         old_score_text, top_score_text
 
-    """The end function is activated when the player uses the 'end' button. The function tells the player how many
-    merits they achieved. If they completed the game, by choosing 20 correct answers, then they achieve an extra 20
-    merits, earning 40 merits in total."""
+    """This function stops the game and tells the player how many merits they achieved."""
 
     from score_class import ScoreClass
     from buttons_class import ButtonClass
@@ -309,6 +312,8 @@ def end_game():
 
 
 def reset_game():
+    
+    """This function resets all game values to their starting position."""
 
     from interface import canvas, end_button, continue_button, new_score_text, old_score_text
     from score_class import ScoreClass
