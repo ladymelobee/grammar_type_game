@@ -3,9 +3,11 @@ from gameplay_functions import answer_reveal, remove_phrase, score_check
 
 def verb_click():
 
-    """When the player clicks on the verb button, this function checks if the word within the sentence is a verb.
-    The player is informed and a description of what a verb is, is displayed. The correct phrase is removed from the
-    to_learn dictionary, and the player is told their score."""
+    """This function checks if the word within the sentence is a verb."""
+    
+    #When the player clicks on the 'verb' button, a description of what a verb is, is displayed. 
+    #If the player chose correctly, the correct phrase is removed from the 'to_learn dictionary', 
+    #and the player is told their score.
 
     from buttons_class import ButtonClass
     from gameplay_class import GamePlay
@@ -37,9 +39,11 @@ def verb_click():
 
 def noun_click():
 
-    """When the player clicks on the noun button, this function checks if the word within the sentence is a noun.
-    The player is informed and a description of what a verb is, is displayed. The correct phrase is removed from the
-    to_learn dictionary, and the player is told their score."""
+    """This function checks if the word within the sentence is a noun."""
+    
+    #When the player clicks on the 'noun' button, a description of what a noun is, is displayed. 
+    #If the player chose correctly, the correct phrase is removed from the 'to_learn dictionary', 
+    #and the player is told their score.
 
     from buttons_class import ButtonClass
     from gameplay_class import GamePlay
@@ -71,9 +75,11 @@ def noun_click():
 
 def adverb_click():
 
-    """When the player clicks on the verb button, this function checks if the word within the sentence is an adverb.
-    The player is informed and a description of what an adverb is, is displayed. The correct phrase is removed from
-    the to_learn dictionary, and the player is told their score."""
+    """This function checks if the word within the sentence is a adverb."""
+    
+    #When the player clicks on the 'adverb' button, a description of what a adverb is, is displayed. 
+    #If the player chose correctly, the correct phrase is removed from the 'to_learn dictionary', 
+    #and the player is told their score.
 
     from buttons_class import ButtonClass
     from gameplay_class import GamePlay
@@ -105,9 +111,11 @@ def adverb_click():
 
 def adjective_click():
 
-    """When the player clicks on the adjective button, this function checks if the word within the sentence is an
-    adjective.The player is informed and a description of what a verb is, is displayed. The correct phrase is removed
-    from the to_learn dictionary, and the player is told their score."""
+    """This function checks if the word within the sentence is a adjective."""
+    
+    #When the player clicks on the 'adjective' button, a description of what a adjective is, is displayed. 
+    #If the player chose correctly, the correct phrase is removed from the 'to_learn dictionary', 
+    #and the player is told their score.
 
     from buttons_class import ButtonClass
     from gameplay_class import GamePlay
