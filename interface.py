@@ -5,7 +5,6 @@ from gameplay_functions import start_game, end_game
 from score_class import ScoreClass
 
 s = ScoreClass()
-b = ButtonClass()
 
 BACKGROUND_COLOR = "#C5f2f6"
 YELLOW = "#e9bc4b"
@@ -84,25 +83,25 @@ adverb_button.grid(column=2, row=1)
 
 adjective_merits = canvas.create_text(104, 30,
                                       fill=YELLOW,
-                                      text=f"Adjective score = {b.adjective_score_1} / 5",
+                                      text=f"Adjective score = {s.adjective_score_1} / 5",
                                       font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
 noun_merits = canvas.create_text(312, 30,
                                  fill=GREEN,
-                                 text=f"Noun score = {b.noun_score_1} / 5",
+                                 text=f"Noun score = {s.noun_score_1} / 5",
                                  font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
 adverb_merits = canvas.create_text(512, 30,
                                    fill=ORANGE,
-                                   text=f"Adverb score = {b.adverb_score_1} / 5",
+                                   text=f"Adverb score = {s.adverb_score_1} / 5",
                                    font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
 verb_merits = canvas.create_text(711, 30,
                                  fill=PURPLE,
-                                 text=f"Verb score = {b.verb_score_1} / 5",
+                                 text=f"Verb score = {s.verb_score_1} / 5",
                                  font=("Ariel", 13, "bold"))
 canvas.grid(column=0, row=0)
 
