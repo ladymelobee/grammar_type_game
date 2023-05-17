@@ -349,20 +349,20 @@ class GamePlay:
         s.verb_score_1 = 0
         s.adjective_score_1 = 0
         s.noun_score_1 = 0
-        #Need to find a way of setting all of the grammar type scores back to 0, not just the last .current_score.
+        # Need to find a way of setting all the grammar type scores back to 0, not just the last .current_score.
         s.subscore.current_score = 0
         s.adverb_score_complete = False
         s.verb_score_complete = False
         s.noun_score_complete = False
         s.adjective_score_complete = False
         canvas.itemconfig(verb_merits,
-                              text=f"Verb score = {s.subscore.current_score} / 5")
+                          text=f"Verb score = {s.subscore.current_score} / 5")
         canvas.itemconfig(noun_merits,
-                              text=f"Noun score = {s.subscore.current_score} / 5")
+                          text=f"Noun score = {s.subscore.current_score} / 5")
         canvas.itemconfig(adverb_merits,
-                              text=f"Adverb score = {s.subscore.current_score} / 5")
+                          text=f"Adverb score = {s.subscore.current_score} / 5")
         canvas.itemconfig(adjective_merits,
-                              text=f"Adjective score = {s.subscore.current_score} / 5")
+                          text=f"Adjective score = {s.subscore.current_score} / 5")
         os.remove("grammar_type_to_learn.csv")
         end_button.configure(text="End", command=self.end_game, fg="White")
         continue_button.configure(text="Continue", command=self.start_game, fg="White")

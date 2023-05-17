@@ -36,10 +36,10 @@ class ScoreClass:
             "Adjective": SubScore(5)
         }
 
+
 class SubScore:
     def __init__(self, target_score):
 
         self.current_score = 0
         self.target_score = target_score
         self.is_complete = False
-
