@@ -41,33 +41,33 @@ class GamePlay:
         if self.sentence_word["Grammar"] == self.answer:
             self.remove_phrase()
             if not s.stop_score:
-                subscore = s.word_type_score[self.answer]
-                if not subscore.is_complete:
-                    subscore.current_score += 1
+                s.subscore = s.word_type_score[self.answer]
+                if not s.subscore.is_complete:
+                    s.subscore.current_score += 1
                     if self.answer == "Verb":
                         canvas.itemconfig(verb_merits,
                                           text=f"{self.answer} "
-                                               f"score = {subscore.current_score} / {subscore.target_score}")
-                        s.verb_score_1 = subscore.current_score
+                                               f"score = {s.subscore.current_score} / {s.subscore.target_score}")
+                        s.verb_score_1 = s.subscore.current_score
                     elif self.answer == "Noun":
                         canvas.itemconfig(noun_merits,
                                           text=f"{self.answer} "
-                                               f"score = {subscore.current_score} / {subscore.target_score}")
-                        s.noun_score_1 = subscore.current_score
+                                               f"score = {s.subscore.current_score} / {s.subscore.target_score}")
+                        s.noun_score_1 = s.subscore.current_score
                     elif self.answer == "Adverb":
                         canvas.itemconfig(adverb_merits,
                                           text=f"{self.answer} "
-                                               f"score = {subscore.current_score} / {subscore.target_score}")
-                        s.adverb_score_1 = subscore.current_score
+                                               f"score = {s.subscore.current_score} / {s.subscore.target_score}")
+                        s.adverb_score_1 = s.subscore.current_score
                     elif self.answer == "Adjective":
                         canvas.itemconfig(adjective_merits,
                                           text=f"{self.answer} "
-                                               f"score = {subscore.current_score} / {subscore.target_score}")
-                        s.adjective_score_1 = subscore.current_score
+                                               f"score = {s.subscore.current_score} / {s.subscore.target_score}")
+                        s.adjective_score_1 = s.subscore.current_score
 
                     s.stop_score = True
-                    if subscore.current_score == subscore.target_score:
-                        subscore.is_complete = True
+                    if s.subscore.current_score == s.subscore.target_score:
+                        s.subscore.is_complete = True
                     self.score_check()
 
     def start_game(self):
@@ -341,20 +341,29 @@ class GamePlay:
 
         """This function resets all game values to their starting position."""
 
-        from interface import canvas, end_button, continue_button, new_score_text, old_score_text
+        from interface import canvas, end_button, continue_button, new_score_text, old_score_text, verb_merits, \
+            noun_merits, adjective_merits, adverb_merits
 
         self.guess = 5
         s.adverb_score_1 = 0
         s.verb_score_1 = 0
         s.adjective_score_1 = 0
         s.noun_score_1 = 0
+        #Need to find a way of setting all of the grammar type scores back to 0, not just the last .current_score.
+        s.subscore.current_score = 0
         s.adverb_score_complete = False
         s.verb_score_complete = False
         s.noun_score_complete = False
         s.adjective_score_complete = False
-
+        canvas.itemconfig(verb_merits,
+                              text=f"Verb score = {s.subscore.current_score} / 5")
+        canvas.itemconfig(noun_merits,
+                              text=f"Noun score = {s.subscore.current_score} / 5")
+        canvas.itemconfig(adverb_merits,
+                              text=f"Adverb score = {s.subscore.current_score} / 5")
+        canvas.itemconfig(adjective_merits,
+                              text=f"Adjective score = {s.subscore.current_score} / 5")
         os.remove("grammar_type_to_learn.csv")
-
         end_button.configure(text="End", command=self.end_game, fg="White")
         continue_button.configure(text="Continue", command=self.start_game, fg="White")
         if s.new_score > s.old_score:
