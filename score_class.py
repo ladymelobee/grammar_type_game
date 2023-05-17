@@ -34,6 +34,13 @@ class ScoreClass:
             "Adjective": SubScore(5)
         }
 
+        self.word_type_merit = {
+            "Noun": SubScore(5),
+            "Verb": SubScore(5),
+            "Adverb": SubScore(5),
+            "Adjective": SubScore(5)
+        }
+
 
 class SubScore:
     def __init__(self, target_score):

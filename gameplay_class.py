@@ -33,9 +33,10 @@ class GamePlay:
         # If the player chose correctly, the correct phrase is removed from the 'to_learn dictionary', 
         # and the player is told their score.
 
-        from interface import canvas
+        from interface import canvas, verb_merits, noun_merits, adjective_merits, adverb_merits
 
         self.answer = button.answer
+        print(self.answer)
         self.answer_reveal()
         if self.sentence_word["Grammar"] == self.answer:
             self.remove_phrase()
@@ -43,8 +44,27 @@ class GamePlay:
                 subscore = s.word_type_score[self.answer]
                 if not subscore.is_complete:
                     subscore.current_score += 1
-                    canvas.itemconfig(s.verb_merits, text=f"{self.answer} score = {subscore.current_score} / "
-                                                          f"{subscore.target_score}")
+                    if self.answer == "Verb":
+                        canvas.itemconfig(verb_merits,
+                                          text=f"{self.answer} "
+                                               f"score = {subscore.current_score} / {subscore.target_score}")
+                        s.verb_score_1 = subscore.current_score
+                    elif self.answer == "Noun":
+                        canvas.itemconfig(noun_merits,
+                                          text=f"{self.answer} "
+                                               f"score = {subscore.current_score} / {subscore.target_score}")
+                        s.noun_score_1 = subscore.current_score
+                    elif self.answer == "Adverb":
+                        canvas.itemconfig(adverb_merits,
+                                          text=f"{self.answer} "
+                                               f"score = {subscore.current_score} / {subscore.target_score}")
+                        s.adverb_score_1 = subscore.current_score
+                    elif self.answer == "Adjective":
+                        canvas.itemconfig(adjective_merits,
+                                          text=f"{self.answer} "
+                                               f"score = {subscore.current_score} / {subscore.target_score}")
+                        s.adjective_score_1 = subscore.current_score
+
                     s.stop_score = True
                     if subscore.current_score == subscore.target_score:
                         subscore.is_complete = True
