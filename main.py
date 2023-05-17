@@ -1,6 +1,7 @@
-from gameplay_functions import start_game
+from gameplay_class import GamePlay
 from interface import window
 
-start_game()
+g = GamePlay()
+g.start_game()
 
 window.mainloop()

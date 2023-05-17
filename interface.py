@@ -1,10 +1,15 @@
 from tkinter import PhotoImage, Canvas, CENTER, Tk, Button
-from buttons_class import ButtonClass
-from button_functions import verb_click, noun_click, adjective_click, adverb_click
-from gameplay_functions import start_game, end_game
+from button_class import WordButton
+from gameplay_class import GamePlay
 from score_class import ScoreClass
 
 s = ScoreClass()
+g = GamePlay()
+
+noun_word_button = WordButton("Noun")
+adverb_word_button = WordButton("Adverb")
+verb_word_button = WordButton("Verb")
+adjective_word_button = WordButton("Adjective")
 
 BACKGROUND_COLOR = "#C5f2f6"
 YELLOW = "#e9bc4b"
@@ -51,7 +56,7 @@ verb_button = Button(image=verb_img,
                      text='Verb',
                      compound=CENTER,
                      font=("Ariel", 20, "bold"),
-                     command=verb_click)
+                     command=lambda: g.click_button(s, verb_word_button))
 verb_button.grid(column=3, row=1)
 
 noun_img = PhotoImage(file="images/noun.png")
@@ -60,7 +65,7 @@ noun_button = Button(image=noun_img,
                      text='Noun',
                      compound=CENTER,
                      font=("Ariel", 20, "bold"),
-                     command=noun_click)
+                     command=lambda: g.click_button(s, noun_word_button))
 noun_button.grid(column=1, row=1)
 
 adjective_img = PhotoImage(file="images/adjective.png")
@@ -69,7 +74,7 @@ adjective_button = Button(image=adjective_img,
                           text='Adjective',
                           compound=CENTER,
                           font=("Ariel", 20, "bold"),
-                          command=adjective_click)
+                          command=lambda: g.click_button(s, adjective_word_button))
 adjective_button.grid(column=0, row=1)
 
 adverb_img = PhotoImage(file="images/adverb.png")
@@ -78,7 +83,7 @@ adverb_button = Button(image=adverb_img,
                        text='Adverb',
                        compound=CENTER,
                        font=("Ariel", 20, "bold"),
-                       command=adverb_click)
+                       command=lambda: g.click_button(s, adverb_word_button))
 adverb_button.grid(column=2, row=1)
 
 adjective_merits = canvas.create_text(104, 30,
@@ -112,7 +117,7 @@ continue_button = Button(image=continue_img,
                          text='Continue',
                          compound=CENTER,
                          font=("Ariel", 15),
-                         command=start_game)
+                         command=g.start_game)
 continue_button.grid(column=0, row=2)
 
 end_img = PhotoImage(file="images/clear.png")
@@ -122,7 +127,7 @@ end_button = Button(image=end_img,
                     text='End',
                     compound=CENTER,
                     font=("Ariel", 15),
-                    command=end_game)
+                    command=g.end_game)
 end_button.grid(column=3, row=2)
 
 top_score_text = canvas.create_text(200, 450,
