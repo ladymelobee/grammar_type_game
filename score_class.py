@@ -28,6 +28,10 @@ class ScoreClass:
         self.adverb_merits = 0
 
         self.subscore = ""
+        self.reset_verb = True
+        self.reset_adverb = True
+        self.reset_noun = True
+        self.reset_adjective = True
 
         self.word_type_score = {
             "Noun": SubScore(5),
