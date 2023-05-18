@@ -28,5 +28,3 @@ If others were to use this program, they could adapt the csv file to use their o
 with my son, I noticed that after several answers, he started to guess, rather than think through the correct answer. 
 To help resolve this, I limited the player's ability for incorrect answers by having 5 wrong answers end the game. 
 This helped motivate the player to beat their previous score, and aim to achieve 20 correct questions to earn maximum merits.
-
-https://github.com/ladymelobee/grammar_type_game/assets/108324785/37222e08-90cb-4e48-9cd9-07aff436cbc0
